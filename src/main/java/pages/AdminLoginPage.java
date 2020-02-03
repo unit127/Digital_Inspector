@@ -22,7 +22,7 @@ public class AdminLoginPage extends PageObject {
     }
 
     public void clickEnterButton(){
-        find(enterButton).click();
+        find(enterButton).waitUntilClickable().click();
     }
 
     public void authorization(String email, String password){
