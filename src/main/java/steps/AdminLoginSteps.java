@@ -18,5 +18,5 @@ public class AdminLoginSteps {
     @Step
     public void authorization(String email, String password){ page.authorization(email, password); }
     @Step
-    public void should_see_error_message(){ Assertions.assertThat(page.wrongDataErrorVisiable()).isTrue()}
+    public void should_see_error_message(){ Assertions.assertThat(page.wrongDataErrorVisiable()).isTrue();}
 }
