@@ -29,8 +29,8 @@ public class PpiSampleSteps {
     @Step
     public void choose_created_operation(String position){page.chooseCreatedOperation(position);}
     @Step
-    public void choose_characteristics(String check_char, String criterion_acceptance, String reg_method, String insp_action ){
-        page.chooseCharacteristics(check_char, criterion_acceptance, reg_method, insp_action);
+    public void choose_characteristics(String check_char, String criterion_acceptance, String reg_method, String inspector_action ){
+        page.chooseCharacteristics(check_char, criterion_acceptance, reg_method, inspector_action);
     }
     @Step
     public void choose_frequency_method(){page.chooseFrequencyMethod();}

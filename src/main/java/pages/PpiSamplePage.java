@@ -79,7 +79,7 @@ public class PpiSamplePage extends PageObject {
         element(xpath(format(created_operation,oper_pos))).click();
     }
 
-    public void chooseCharacteristics(String check_char, String criterion_acceptance, String reg_method, String insp_action){
+    public void chooseCharacteristics(String check_char, String criterion_acceptance, String reg_method, String inspector_action){
         find(checking_characteristics_input).sendKeys(check_char);
         element(xpath(format(choose_characteristic,check_char))).click();
 
@@ -89,8 +89,8 @@ public class PpiSamplePage extends PageObject {
         find(registration_method_input).sendKeys(reg_method);
         element(xpath(format(choose_characteristic,reg_method)));
 
-        find(inspector_action_input).sendKeys(insp_action);
-        element(xpath(format(choose_characteristic,insp_action)));
+        find(inspector_action_input).sendKeys(inspector_action);
+        element(xpath(format(choose_characteristic,inspector_action)));
     }
 
     public void chooseFrequencyMethod(){
