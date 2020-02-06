@@ -1,5 +1,6 @@
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ public class WhenAdminLogin {
     @Managed(driver = "chrome")
     WebDriver driver;
     @Test
+    @Pending
     public void authorization(){
         steps.open_login_page();
         steps.type_email("testUserAdmin");
@@ -21,6 +23,7 @@ public class WhenAdminLogin {
         steps.click_enter_button();
     }
     @Test
+    @Pending
     public void errorMessage(){
         steps.open_login_page();
         steps.authorization("testUserAdmin1","testUserAdmin1");

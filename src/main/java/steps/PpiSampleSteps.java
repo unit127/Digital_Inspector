@@ -9,6 +9,8 @@ public class PpiSampleSteps {
     @Step
     public void open_page(){page.open();}
     @Step
+    public void login(String login, String pass){page.login(login, pass);}
+    @Step
     public void choose_menu_ppi(){page.chooseMenuPpiSample();}
     @Step
     public void create_button_click(){page.createButtonClick();}

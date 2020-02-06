@@ -3,6 +3,7 @@ package pages;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
@@ -80,17 +81,19 @@ public class PpiSamplePage extends PageObject {
     }
 
     public void chooseCharacteristics(String check_char, String criterion_acceptance, String reg_method, String inspector_action){
+        moveTo(checking_characteristics_input).waitUntilClickable();
         find(checking_characteristics_input).sendKeys(check_char);
         element(xpath(format(choose_characteristic,check_char))).click();
-
+        waitABit(500);
         find(criteria_acceptance_input).sendKeys(criterion_acceptance);
-        element(xpath(format(choose_characteristic,criterion_acceptance)));
-
+        element(xpath(format(choose_characteristic,criterion_acceptance))).click();
+        waitABit(500);
         find(registration_method_input).sendKeys(reg_method);
-        element(xpath(format(choose_characteristic,reg_method)));
-
+        element(xpath(format(choose_characteristic,reg_method))).click();
+        waitABit(500);
         find(inspector_action_input).sendKeys(inspector_action);
-        element(xpath(format(choose_characteristic,inspector_action)));
+        element(xpath(format(choose_characteristic,inspector_action))).click();
+        waitABit(500);
     }
 
     public void chooseFrequencyMethod(){
