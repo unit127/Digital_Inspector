@@ -1,6 +1,7 @@
 package steps;
 
 import net.thucydides.core.annotations.Step;
+import org.assertj.core.api.Assertions;
 import pages.PpiSamplePage;
 
 public class PpiSampleSteps {
@@ -38,4 +39,14 @@ public class PpiSampleSteps {
     public void choose_frequency_method(){page.chooseFrequencyMethod();}
     @Step
     public void type_link_document(String text){page.typeLinkDocument(text);}
+    @Step
+    public void choose_created_ppi_sample(String ppi_sample_name){page.chooseCreatedPpiSample(ppi_sample_name);}
+    @Step
+    public void should_see_provider_product(){
+        Assertions.assertThat(page.correctProviderProductExistVisible()).isTrue();}
+    @Step
+    public void should_see_correct_parameters_frequency_method(String parameter_name){
+        Assertions.assertThat(page.correctParametersFrequencyMethod(parameter_name)).isTrue();}
+    @Step
+    public void click_right_arrow_button(){page.rightArrowButtonClick();}
 }

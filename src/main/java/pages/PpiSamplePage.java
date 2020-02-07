@@ -34,6 +34,8 @@ public class PpiSamplePage extends PageObject {
     private String created_operation_group = "//div[@class='operations-list expansion-panel v-item-group theme--light v-expansion-panels v-expansion-panels--focusable']//div[%s]//button[1]";
     private String created_operation = "//div[@class='v-expansion-panel sub-operation'][%s]";
     private String choose_characteristic = "//span[contains(text(),'%s')]";
+    private String ppi_sample_name = "//td[contains(text(),'%s')]";
+    private String div_text_contains = "//div[contains(text(),'%s')]";
 
     public void login(String email, String pass){page.authorization(email, pass);}
 
@@ -101,19 +103,19 @@ public class PpiSamplePage extends PageObject {
         find(By.xpath("//div[contains(text(),'R (проведение проверки документации)')]")).click();
 
         findAll(By.xpath("//input[@label='Метод проверки']")).get(1).click();
-        find(By.xpath("//div[contains(text(),'R (проведение проверки документации)')]")).click();
+        find(By.xpath("//div[contains(text(),'S (при выполнении операции используются услуги субподрядчика)')]")).click();
 
         findAll(By.xpath("//input[@label='Метод проверки']")).get(2).click();
-        find(By.xpath("//div[contains(text(),'R (проведение проверки документации)')]")).click();
+        find(By.xpath("//div[contains(text(),'V (проведение проверки или проверка выполнения технологического процесса)')]")).click();
 
         findAll(By.xpath("//input[@label='Частота проверки']")).get(0).click();
-        find(By.xpath("//div[contains(text(),'B (выборочно)')]")).click();
+        find(By.xpath("//div[contains(text(),'A (только первую партию, затем выборочно)')]")).click();
 
         findAll(By.xpath("//input[@label='Частота проверки']")).get(1).click();
         find(By.xpath("//div[contains(text(),'B (выборочно)')]")).click();
 
         findAll(By.xpath("//input[@label='Частота проверки']")).get(2).click();
-        find(By.xpath("//div[contains(text(),'B (выборочно)')]")).click();
+        find(By.xpath("//div[contains(text(),'C (100% проверка каждой единицы)')]")).click();
 
 
         findAll(By.xpath("//button[contains(text(),'Добавить')]")).get(0).click();
@@ -123,8 +125,29 @@ public class PpiSamplePage extends PageObject {
     }
 
     public void typeLinkDocument(String text){
+        moveTo(link_document_text).waitUntilClickable();
         find(link_document_text).sendKeys(text);
-        find(By.xpath("//button[contains(text(),'Сохранить документ')]"));
+        moveTo(By.xpath("//button[contains(text(),'Сохранить документ')]"));
+        find(By.xpath("//button[contains(text(),'Сохранить документ')]")).click();
+    }
+
+    public void chooseCreatedPpiSample(String name){
+        element(xpath(format(ppi_sample_name,name))).click();
+    }
+
+    public void rightArrowButtonClick(){
+        find(By.xpath("//i[contains(text(),'keyboard_arrow_right')]")).click();
+    }
+
+    public boolean correctProviderProductExistVisible(){
+        return findAll(By.xpath("//div[@class='v-text-field__slot']")).size() ==2
+                && findAll(By.xpath("//div[@class='v-text-field__slot']")).get(0).isVisible()
+                && findAll(By.xpath("//div[@class='v-text-field__slot']")).get(1).isVisible();
+    }
+
+    public boolean correctParametersFrequencyMethod(String parameter_name){
+        return findAll(xpath(format(div_text_contains,parameter_name))).size()==1
+                && findAll(xpath(format(div_text_contains,parameter_name))).get(0).isVisible();
     }
 
 
