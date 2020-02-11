@@ -150,5 +150,9 @@ public class PpiSamplePage extends PageObject {
                 && findAll(xpath(format(div_text_contains,parameter_name))).get(0).isVisible();
     }
 
+    public boolean correctLinkDocumentText(String text){
+        return find(link_document_text).getValue().equals(text);
+    }
+
 
 }

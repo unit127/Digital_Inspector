@@ -2,12 +2,15 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import steps.PpiSampleSteps;
 
 @RunWith(SerenityRunner.class)
+//@FixMethodOrder(MethodSorters.JVM)
 public class WhenPpiSample {
     @Steps
     PpiSampleSteps steps;
@@ -40,11 +43,11 @@ public class WhenPpiSample {
        }
 
     @Test
-    public void ppiSampleCheck(){
+    public void ppiSampleCheck() {
         steps.open_page();
-        steps.login("testUserAdmin","testUserAdmin1");
+        steps.login("testUserAdmin", "testUserAdmin1");
         steps.choose_menu_ppi();
-        steps.click_right_arrow_button();
+        //steps.click_right_arrow_button();
         steps.choose_created_ppi_sample("Autotest ppi name4");
         steps.should_see_provider_product();
         steps.choose_created_operation_group("1");
@@ -56,5 +59,6 @@ public class WhenPpiSample {
         steps.should_see_correct_parameters_frequency_method("R (проведение проверки документации) / A (только первую партию, затем выборочно)");
         steps.should_see_correct_parameters_frequency_method("S (при выполнении операции используются услуги субподрядчика) / B (выборочно)");
         steps.should_see_correct_parameters_frequency_method("V (проведение проверки или проверка выполнения технологического процесса) / C (100% проверка каждой единицы)");
+        steps.should_see_correct_link_document_text("link document");
     }
 }

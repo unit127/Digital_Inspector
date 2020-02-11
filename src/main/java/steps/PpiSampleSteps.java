@@ -49,4 +49,6 @@ public class PpiSampleSteps {
         Assertions.assertThat(page.correctParametersFrequencyMethod(parameter_name)).isTrue();}
     @Step
     public void click_right_arrow_button(){page.rightArrowButtonClick();}
+    @Step
+    public void should_see_correct_link_document_text(String text){page.correctLinkDocumentText(text);}
 }
