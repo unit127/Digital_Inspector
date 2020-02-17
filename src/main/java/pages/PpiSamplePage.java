@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
-@DefaultUrl("https://a2-test.gpnsmonitor.ru/")
+@DefaultUrl("https://a2-stage.gpnsmonitor.ru/")
 public class PpiSamplePage extends PageObject {
     AdminLoginPage page;
 
