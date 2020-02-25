@@ -1,6 +1,7 @@
 package steps;
 
 import net.thucydides.core.annotations.Step;
+import org.assertj.core.api.Assertions;
 import pages.PlanScheduleSamplePage;
 
 public class PlanScheduleSampleSteps {
@@ -23,7 +24,7 @@ public class PlanScheduleSampleSteps {
     @Step
     public void choose_ppi_sample(String ppi_sample_name){page.choosePpiSample(ppi_sample_name);}
     @Step
-    public void add_step_button_click(){page.addStepButtonClick();}
+    public void add_stage_button_click(){page.addStageButtonClick();}
     @Step
     public void choose_new_stage(String stage_name){page.chooseNewStage(stage_name);}
     @Step
@@ -34,5 +35,35 @@ public class PlanScheduleSampleSteps {
     public void save_button_click(){page.saveButtonClick();}
     @Step
     public void save_close_button_click(){page.saveAndCloseButtonClick();}
+    @Step
+    public void add_ppi_to_step(String group_operation_name, int step_position){page.addPpiToStage(group_operation_name,step_position);}
+    @Step
+    public void delete_stage(int stage_position){page.deleteStage(stage_position);}
+    @Step
+    public void clean_plan_schedule_button_click(){page.cleanPlanScheduleButtonClick();}
+    @Step
+    public void should_see_correct_provider_material(){
+        Assertions.assertThat(page.correctProviderMaterialExistVisible()).isTrue();
+    }
+    @Step
+    public void should_see_correct_ppi_sample(String ppi_sample_name){
+        Assertions.assertThat(page.correctPpiSampleSelectedVisible(ppi_sample_name)).isTrue();
+    }
+    @Step
+    public void should_see_correct_stage_exist(String stage_name){
+        Assertions.assertThat(page.correctStageExist(stage_name)).isTrue();
+    }
+    @Step
+    public void should_see_empty_diagram(){
+        Assertions.assertThat(page.checkDiagramEmpty()).isTrue();
+    }
+    @Step
+    public void should_see_stage_deleted(){
+        Assertions.assertThat(page.checkStageDeleted()).isTrue();
+    }
+    @Step
+    public void should_see_ppi_operation_deleted(){
+        Assertions.assertThat(page.checkPpiOperationDeleted()).isTrue();
+    }
 
 }

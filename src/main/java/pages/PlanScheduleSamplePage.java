@@ -17,7 +17,7 @@ public class PlanScheduleSamplePage extends PageObject {
     private By provider_name_input = By.xpath("//input[@label='Выберите поставщика']");
     private By material_name_input = By.xpath("//input[@label='Выберите материал']");
     private By ppi_sample_name_input = By.xpath("//input[@label='Выберите шаблон ППИ']");
-    private By add_step_button = By.xpath("//div[contains(text(),'Добавить этап')]");
+    private By add_stage_button = By.xpath("//div[contains(text(),'Добавить этап')]");
     private By new_stage_name_input = By.xpath("//input[@label='Поиск']");
     private By save_button = By.xpath("//div[@class='modal']//button[2]//div[1]");
     private By save_close_button = By.xpath("//button[3]//div[1]");
@@ -26,12 +26,18 @@ public class PlanScheduleSamplePage extends PageObject {
     private By add_ppi_operations_button = By.xpath("//div[contains(text(),'Добавить операцию')]");
     private By choose_all_operations = By.xpath("//a[contains(text(),'Выбрать все')]");
     private By close_button = By.xpath("//div[contains(text(),'Закрыть')]");
+    private By delete_stage_button = By.xpath("//span[contains(text(),'Удалить этап')]");
+    private By clean_plan_schedule_button = By.xpath("//div[contains(text(),'Очистить план-график')]");
+    private By delete_ppi_operation = By.xpath("//div[@class='add-operation__summary-remove']");
 
     private String provider_name = "//span[contains(text(),'%s')]";
-    private String material_name = "//span[contains(text(),'%s')]";
+    private String choose_material_name = "//span[contains(text(),'%s')]";
     private String ppi_sample_name = "//div[contains(text(),'%s')]";
     private String new_stage_name = "//div[contains(text(),'%s')]";
     private String group_operation = "//div[contains(text(),'%s')]";
+    private String choose_plan_schedule_sample = "//div[contains(text(),'%s')]";
+    private String stage_exist = "//div[@class='gantt-chart__task-list']//div[contains(text(),'%s')]";
+    private String ppi_operation_exist = "//div[contains(text(),'%s')]";
 
     public void login(String email, String pass){page.authorization(email, pass);}
 
@@ -53,15 +59,15 @@ public class PlanScheduleSamplePage extends PageObject {
 
     public void chooseMaterial(String material_name){
         find(material_name_input).sendKeys(material_name);
-        element(xpath(format(material_name,material_name))).click();
+        element(xpath(format(choose_material_name,material_name))).click();
     }
 
     public void choosePpiSample(String sample_name){
-        find(ppi_sample_name_input).sendKeys(sample_name);
+        find(ppi_sample_name_input).click();//sendKeys(sample_name);
         element(xpath(format(ppi_sample_name,sample_name))).click();
     }
 
-    public void addStepButtonClick(){find(add_step_button).waitUntilClickable().click();}
+    public void addStageButtonClick(){find(add_stage_button).waitUntilClickable().click();}
 
     public void chooseNewStage(String stage_name){
         find(new_stage_name_input).sendKeys(stage_name);
@@ -84,8 +90,8 @@ public class PlanScheduleSamplePage extends PageObject {
         find(save_close_button).waitUntilClickable().click();
     }
 
-    public void addPpiToStep(String group_operation_name){
-        findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(0).click();
+    public void addPpiToStage(String group_operation_name, int stage_position){
+        findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(stage_position-1).click();
         find(group_operation_input).sendKeys(group_operation_name);
         element(xpath(format(group_operation,group_operation_name))).click();
         //findAll(By.xpath("//div[@class='add-operation__list-item flex clickable p2']")).get(0).click();
@@ -93,5 +99,53 @@ public class PlanScheduleSamplePage extends PageObject {
         find(add_ppi_operations_button).click();
         find(close_button).click();
     }
+
+    public void deleteStage(int stage_position){
+        findAll(By.xpath("//a[contains(text(),'Редактировать')]")).get(stage_position-1).click();
+        find(delete_stage_button).click();
+    }
+
+    public void cleanPlanScheduleButtonClick(){
+        find(clean_plan_schedule_button).waitUntilClickable().click();
+    }
+
+    public void choosePlanScheduleSample(String plan_sample_name){
+        element(xpath(format(choose_plan_schedule_sample,plan_sample_name))).click();
+    }
+
+    public boolean correctProviderMaterialExistVisible(){
+        return findAll(By.xpath("//div[@class='v-text-field__slot']")).size() ==2
+                && findAll(By.xpath("//div[@class='v-text-field__slot']")).get(0).isVisible()
+                && findAll(By.xpath("//div[@class='v-text-field__slot']")).get(1).isVisible();
+    }
+
+    public boolean correctPpiSampleSelectedVisible(String sample_name){
+        System.out.println("test ppi sample name - " + find(ppi_sample_name_input).getValue());
+        return find(ppi_sample_name_input).getValue().equals(sample_name);
+    }
+
+    public boolean correctStageExist(String stage_name){
+        return findAll(xpath(format(stage_exist, stage_name))).size() == 1;
+    }
+
+    public boolean checkDiagramEmpty(){
+        return findAll(By.xpath("//div[@class='gantt-chart__task-list']//div[@class='flex flex-column']")).size() == 0;
+    }
+
+    public boolean checkStageDeleted(){
+        String stage_delete = findAll("//div[@class='gantt-chart__task-list']//div[1]//div[2]//div[1]").get(0).getText();
+        findAll(By.xpath("//a[contains(text(),'Редактировать')]")).get(0).click();
+        find(delete_stage_button).click();
+        return findAll(stage_exist,stage_delete).size()==0;
+    }
+
+    public boolean checkPpiOperationDeleted(){
+        findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(0).click();
+        String ppi_operation_delete = findAll("//div[@class='add-operation__summary-item']//div[1]").get(0).getText();
+        findAll(delete_ppi_operation).get(0).waitUntilClickable().click();
+        return findAll(ppi_operation_exist, ppi_operation_delete).size() == 0;
+    }
+
+
 
 }
