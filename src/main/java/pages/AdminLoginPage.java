@@ -6,7 +6,7 @@ import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import static java.lang.String.format;
 
-@DefaultUrl("https://a2-stage.gpnsmonitor.ru/")
+@DefaultUrl("https://a2-stage.gpnsmonitor.ru/login")
 public class AdminLoginPage extends PageObject {
     private By emailInput = By.xpath("//input[@type='email']");
     private By passwordInput = By.xpath("//input[@type='password']");

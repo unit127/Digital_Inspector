@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
-@DefaultUrl("https://a2-stage.gpnsmonitor.ru/")
+@DefaultUrl("https://a2-stage.gpnsmonitor.ru/login")
 public class PlanScheduleSamplePage extends PageObject {
     AdminLoginPage page;
 
@@ -33,11 +33,12 @@ public class PlanScheduleSamplePage extends PageObject {
     private String provider_name = "//span[contains(text(),'%s')]";
     private String choose_material_name = "//span[contains(text(),'%s')]";
     private String ppi_sample_name = "//div[contains(text(),'%s')]";
-    private String new_stage_name = "//div[contains(text(),'%s')]";
-    private String group_operation = "//div[contains(text(),'%s')]";
+    private String new_stage_name = "//span[contains(text(),'%s')]";
+    private String group_operation = "//span[contains(text(),'%s')]";
     private String choose_plan_schedule_sample = "//div[contains(text(),'%s')]";
     private String stage_exist = "//div[@class='gantt-chart__task-list']//div[contains(text(),'%s')]";
     private String ppi_operation_exist = "//div[contains(text(),'%s')]";
+    private String delete_plan_schedule = ".//div[contains(text(),'%s')]/..//button[2]";
 
     public void login(String email, String pass){page.authorization(email, pass);}
 
@@ -53,6 +54,7 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void chooseProvider(String name){
+        waitABit(500);
         find(provider_name_input).sendKeys(name);
         element(xpath(format(provider_name,name))).click();
     }
@@ -67,7 +69,10 @@ public class PlanScheduleSamplePage extends PageObject {
         element(xpath(format(ppi_sample_name,sample_name))).click();
     }
 
-    public void addStageButtonClick(){find(add_stage_button).waitUntilClickable().click();}
+    public void addStageButtonClick(){
+        waitABit(500);
+        find(add_stage_button).waitUntilClickable().click();
+    }
 
     public void chooseNewStage(String stage_name){
         find(new_stage_name_input).sendKeys(stage_name);
@@ -75,7 +80,7 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void typeDuration(String days){
-        findAll(By.xpath("//input[@type='text']")).get(3).sendKeys(days);
+        findAll(By.xpath("//div[@class='v-text-field__slot']//input")).get(2).sendKeys(days);
     }
 
     public void choosePreviousStage(int prev_stage_position){
@@ -97,7 +102,8 @@ public class PlanScheduleSamplePage extends PageObject {
         //findAll(By.xpath("//div[@class='add-operation__list-item flex clickable p2']")).get(0).click();
         find(choose_all_operations).click();
         find(add_ppi_operations_button).click();
-        find(close_button).click();
+        waitABit(500);
+        find(close_button).waitUntilClickable().click();
     }
 
     public void deleteStage(int stage_position){
@@ -111,6 +117,11 @@ public class PlanScheduleSamplePage extends PageObject {
 
     public void choosePlanScheduleSample(String plan_sample_name){
         element(xpath(format(choose_plan_schedule_sample,plan_sample_name))).click();
+        waitABit(500);
+    }
+
+    public void deletePlanScheduleSample(String pg_sample_name){
+        element(xpath(format(delete_plan_schedule,pg_sample_name))).click();
     }
 
     public boolean correctProviderMaterialExistVisible(){
@@ -134,6 +145,7 @@ public class PlanScheduleSamplePage extends PageObject {
 
     public boolean checkStageDeleted(){
         String stage_delete = findAll("//div[@class='gantt-chart__task-list']//div[1]//div[2]//div[1]").get(0).getText();
+        System.out.println("test - " + stage_delete);
         findAll(By.xpath("//a[contains(text(),'Редактировать')]")).get(0).click();
         find(delete_stage_button).click();
         return findAll(stage_exist,stage_delete).size()==0;
@@ -143,6 +155,7 @@ public class PlanScheduleSamplePage extends PageObject {
         findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(0).click();
         String ppi_operation_delete = findAll("//div[@class='add-operation__summary-item']//div[1]").get(0).getText();
         findAll(delete_ppi_operation).get(0).waitUntilClickable().click();
+        find(close_button).click();
         return findAll(ppi_operation_exist, ppi_operation_delete).size() == 0;
     }
 

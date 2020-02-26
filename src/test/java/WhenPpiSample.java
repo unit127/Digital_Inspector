@@ -25,7 +25,7 @@ public class WhenPpiSample {
         steps.login("testUserAdmin","testUserAdmin1");
         steps.choose_menu_ppi();
         steps.create_button_click();
-        steps.type_sample_name("Autotest ppi name4");
+        steps.type_sample_name("Autotest ppi name5");
         steps.create_button_click();
         steps.choose_provider("Корвет");
         steps.choose_product("Труба дымовая");
@@ -43,12 +43,13 @@ public class WhenPpiSample {
        }
 
     @Test
+    @Pending
     public void ppiSampleCheck() {
         steps.open_page();
         steps.login("testUserAdmin", "testUserAdmin1");
         steps.choose_menu_ppi();
         //steps.click_right_arrow_button();
-        steps.choose_created_ppi_sample("Autotest ppi name4");
+        steps.choose_created_ppi_sample("Autotest ppi name5");
         steps.should_see_provider_product();
         steps.choose_created_operation_group("1");
         steps.choose_created_operation("1");

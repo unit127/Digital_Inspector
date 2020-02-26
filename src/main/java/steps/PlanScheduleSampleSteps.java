@@ -42,6 +42,12 @@ public class PlanScheduleSampleSteps {
     @Step
     public void clean_plan_schedule_button_click(){page.cleanPlanScheduleButtonClick();}
     @Step
+    public void choose_created_plan_schedule_sample(String sample_name){page.choosePlanScheduleSample(sample_name);}
+    @Step
+    public void delete_plan_schedule_sample(String pg_sample_name){
+        page.deletePlanScheduleSample(pg_sample_name);
+    }
+    @Step
     public void should_see_correct_provider_material(){
         Assertions.assertThat(page.correctProviderMaterialExistVisible()).isTrue();
     }
