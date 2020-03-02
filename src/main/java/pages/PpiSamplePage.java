@@ -11,23 +11,23 @@ import static org.openqa.selenium.By.xpath;
 public class PpiSamplePage extends PageObject {
     AdminLoginPage page;
 
-    private By menu_ppi_sample = By.xpath("//body//a[4]");
-    private By create_button = By.xpath("//div[contains(text(),'Создать')]");
-    private By ppi_name_input = By.xpath("//input[@type='text']");
-    private By provider_name_input = By.xpath("//input[@label='Введите поставщика']");
-    private By product_name_input = By.xpath("//input[@label='Выберите изделия']");
+    private By menu_ppi_sample = xpath("//body//a[4]");
+    private By create_button = xpath("//div[contains(text(),'Создать')]");
+    private By ppi_name_input = xpath("//input[@type='text']");
+    private By provider_name_input = xpath("//input[@label='Введите поставщика']");
+    private By product_name_input = xpath("//input[@label='Выберите изделия']");
 
-    private By group_operation_input = By.xpath("//input[@label='Группа технологических операций']");
-    private By group_operation = By.xpath("//div[contains(text(),'Производство')]");
-    private By operation_input = By.xpath("//input[@label='Технологическая операция']");
-    private By operation = By.xpath("//div[contains(text(),'Контроль испытательного оборудования')]");
+    private By group_operation_input = xpath("//input[@label='Группа технологических операций']");
+    private By group_operation = xpath("//div[contains(text(),'Производство')]");
+    private By operation_input = xpath("//input[@label='Технологическая операция']");
+    private By operation = xpath("//div[contains(text(),'Контроль испытательного оборудования')]");
     private By add_operation_button = By.xpath("//div[contains(text(),'Добавить операцию')]");
 
-    private By checking_characteristics_input = By.xpath("//input[@label='Проверяемые характеристики']");
-    private By criteria_acceptance_input = By.xpath("//input[@label='Критерии приемки']");
-    private By registration_method_input = By.xpath("//input[@label='Метод регистрации результатов']");
-    private By inspector_action_input = By.xpath("//input[@label='Действия инспектора при несоответствии']");
-    private By link_document_text = By.xpath("//textarea[@name='ref-docs']");
+    private By checking_characteristics_input = xpath("//input[@label='Проверяемые характеристики']");
+    private By criteria_acceptance_input = xpath("//input[@label='Критерии приемки']");
+    private By registration_method_input = xpath("//input[@label='Метод регистрации результатов']");
+    private By inspector_action_input = xpath("//input[@label='Действия инспектора при несоответствии']");
+    private By link_document_text = xpath("//textarea[@name='ref-docs']");
 
     private String provider_name = "//span[contains(text(),'%s')]";
     private String product_name = "//span[contains(text(),'%s')]";
