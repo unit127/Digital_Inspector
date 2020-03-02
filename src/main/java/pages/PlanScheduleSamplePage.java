@@ -132,12 +132,12 @@ public class PlanScheduleSamplePage extends PageObject {
 
     public boolean correctPpiSampleSelectedVisible(String sample_name){
         System.out.println("test ppi sample name - " + find(ppi_sample_name_input).getValue());
-        int k = 0;
+        /*int k = 0;
         while(find(ppi_sample_name_input).getValue().equals("") || k <3){
             chooseMenuPlanScheduleSample();
             choosePlanScheduleSample("Autotest PG sample");
             k++;
-        }
+        }*/
 
         return find(ppi_sample_name_input).getValue().equals(sample_name);
     }

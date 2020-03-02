@@ -10,7 +10,7 @@ import static java.lang.String.format;
 public class AdminLoginPage extends PageObject {
     private By emailInput = By.xpath("//input[@type='email']");
     private By passwordInput = By.xpath("//input[@type='password']");
-    private By enterButton = By.xpath("//div[@class='gpns-button__content flex center align-center justify-center typo-body2 truncate']");
+    private By enterButton = By.xpath("//button");
     private By errorMessage = By.xpath("//div[@class='color--warning gpns-caption']");
 
     public void typeEmail(String email){
