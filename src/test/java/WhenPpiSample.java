@@ -25,7 +25,7 @@ public class WhenPpiSample {
         steps.login("testUserAdmin","testUserAdmin1");
         steps.choose_menu_ppi();
         steps.create_button_click();
-        steps.type_sample_name("Autotest ppi name5");
+        steps.type_sample_name("Autotest ppi name12");
         steps.create_button_click();
         steps.choose_provider("Корвет");
         steps.choose_product("Труба дымовая");

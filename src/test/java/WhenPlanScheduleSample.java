@@ -16,11 +16,12 @@ public class WhenPlanScheduleSample {
     WebDriver driver;
 
     @Test
+    @Pending
     public void createPlanScheduleSample(){
         steps.open_page();
         steps.login("testUserAdmin","testUserAdmin1");
         steps.choose_plan_schedule_sample_menu();
-        for(int i = 0; i<100; i++){
+        //for(int i = 0; i<100; i++){
             steps.create_button_click();
             steps.type_plan_schedule_sample_name("Autotest PG sample");
             steps.create_button_click();
@@ -42,7 +43,7 @@ public class WhenPlanScheduleSample {
             steps.should_see_empty_diagram();
             steps.choose_plan_schedule_sample_menu();
             steps.delete_plan_schedule_sample("Autotest PG sample");
-            System.out.println("shag - " + i);
-        }
+     //       System.out.println("shag - " + i);
+     //   }
     }
 }

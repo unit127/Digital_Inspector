@@ -3,9 +3,7 @@ package pages;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Action;
 
@@ -13,11 +11,13 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
 @DefaultUrl("https://i-stage.gpnsmonitor.ru/")
 public class InspectorPlanSchedulePage extends PageObject {
     AdminLoginPage page;
+    WebDriver driver;
 
     private By search_input = xpath("//input[@placeholder='Поиск']");
     private By founded_plan_schedule = xpath("//div[@class='gpns-card__content flex flex-column flex-auto']");
@@ -25,7 +25,7 @@ public class InspectorPlanSchedulePage extends PageObject {
     private By operations = xpath("//div[@class='gpns-card rounded with-shadow background--white gpns-card--in-card clickable']");
     private By characteristics = xpath("//div[@class='flex flex-auto']");
     private By comment_textarea = xpath("//textarea[@placeholder='Написать комментарий']");
-    private By documents_criteria_button = xpath("//a[contains(text(),'Документы и критерии проверки')]");
+    private By documents_criteria_button = xpath("//a[contains(text(),'Документы и критерии приемки')]");
     private By understand_button = xpath("//button[contains(text(),'Понятно')]");
     private By use_this_photo_button = xpath("//button[contains(text(),'Использовать это фото')]");
     private By photo_input = xpath("//input[@type='file']");
@@ -34,14 +34,16 @@ public class InspectorPlanSchedulePage extends PageObject {
     private By ready_link = xpath("//div[contains(text(),'Готово')]");
     private By delete_photo_link = xpath("//div[contains(text(),'Удалить')]");
     private By passed_button = xpath("//button[@id='set-validation-check-status-passed']");
+    private By passed_button2 = cssSelector("#set-validation-check-status-passed");
     private By has_defect_button = xpath("//button[@id='set-validation-check-status-has-defects']");
     private By take_decision_later_button = xpath("//button[contains(text(),'Принять решение позже')]");
     private By complete_control = xpath("//button[contains(text(),'Завершить контроль')]");
     private By general_comment = xpath("//button[contains(text(),'Добавить общий комментарий')]");
     private By save_button = xpath("//button[contains(text(),'Сохранить')]");
-    private By factory_number_link = xpath("//div[@class='gpns-link clickable']");
-    private By factory_number_input = xpath("//div[@class='flex-auto overflow-auto gpns-base']//input");
+    private By factory_number_link = xpath("//div[contains(text(),'№')]");
+    private By factory_number_input = xpath("//div[@class='md-field md-theme-default md-has-value']//input");
     private By progress_slider = xpath("//div[@class='vue-slider-dot']"); //("//div[@class='vue-slider-rail']");
+    private By back_button = xpath("//i[contains(text(),'arrow_back')]");
 
 
     private List<WebElementFacade> listStages = new ArrayList<WebElementFacade>();
@@ -51,8 +53,9 @@ public class InspectorPlanSchedulePage extends PageObject {
     public void login(String email, String pass){page.authorization(email, pass);}
 
     public void fillSearchPlanSchedule(String search_request){
+        waitABit(1500);
         find(search_input).sendKeys(search_request);
-        waitABit(500);
+        waitABit(1500);
     }
 
     public void openFoundedPlanSchedule(){
@@ -127,7 +130,21 @@ public class InspectorPlanSchedulePage extends PageObject {
     }
 
     public void passedButtonClick(){
-        find(passed_button).waitUntilClickable().click();
+       // System.out.println("Button name - " + find(passed_button).getTextContent());
+      /*  WebElement slider = find(passed_button);
+        Actions moveSlider = new Actions(getDriver());
+        Action action = moveSlider.moveToElement(slider).moveToElement(find(By.xpath("//button[@id='set-validation-check-status-passed']"))).click().build();
+        action.perform();*/
+       // waitABit(5000);
+      /*  JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("document.getElementById('set-validation-check-status-passed').style.display='block';");*/
+    /*    JavascriptExecutor js = (JavascriptExecutor)driver;
+        WebElement element = find(passed_button);
+        js.executeScript("arguments[0].click();", element);*/
+        waitABit(500);
+        find(passed_button).click();
+        waitABit(3000);
+
     }
 
     public void hasDefectButtonClick(){
@@ -168,6 +185,10 @@ public class InspectorPlanSchedulePage extends PageObject {
         Action action = moveSlider.dragAndDropBy(slider, move, 0).build();
         action.perform();
         find(xpath("//button[contains(text(),'Да')]")).click();
+    }
+
+    public void backButtonClick(){
+        find(back_button).waitUntilClickable().click();
     }
 
 }
