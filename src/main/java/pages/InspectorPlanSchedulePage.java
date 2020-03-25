@@ -34,7 +34,6 @@ public class InspectorPlanSchedulePage extends PageObject {
     private By ready_link = xpath("//div[contains(text(),'Готово')]");
     private By delete_photo_link = xpath("//div[contains(text(),'Удалить')]");
     private By passed_button = xpath("//button[@id='set-validation-check-status-passed']");
-    private By passed_button2 = cssSelector("#set-validation-check-status-passed");
     private By has_defect_button = xpath("//button[@id='set-validation-check-status-has-defects']");
     private By take_decision_later_button = xpath("//button[contains(text(),'Принять решение позже')]");
     private By complete_control = xpath("//button[contains(text(),'Завершить контроль')]");
