@@ -105,7 +105,7 @@ public class InspectorPlanSchedulePage extends PageObject {
     }
 
     public void addPhoto(int id){
-        String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\photo"+id+".jpg";
+        String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\bigphoto"+id+".jpg";
         System.out.println(photoPath);
         find(photo_input).waitUntilEnabled();
         find(photo_input).sendKeys(photoPath);
@@ -142,7 +142,7 @@ public class InspectorPlanSchedulePage extends PageObject {
         js.executeScript("arguments[0].click();", element);*/
         waitABit(500);
         find(passed_button).click();
-        waitABit(3000);
+        waitABit(4000);
 
     }
 
