@@ -105,14 +105,17 @@ public class InspectorPlanSchedulePage extends PageObject {
     }
 
     public void addPhoto(int id){
-        String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\bigphoto"+id+".jpg";
-        System.out.println(photoPath);
-        find(photo_input).waitUntilEnabled();
-        find(photo_input).sendKeys(photoPath);
-        //waitABit(3000);
-        //find(By.xpath("//span[contains(text(),'Ok')]")).click();
-        find(use_this_photo_button).click();
-        waitABit(500);
+        for(int i =1; i< 6; i++) {
+            String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\bigphoto" + i + ".jpg";
+            System.out.println(photoPath);
+            find(photo_input).waitUntilEnabled();
+            waitABit(500);
+            find(photo_input).sendKeys(photoPath);
+            waitABit(1000);
+            //find(By.xpath("//span[contains(text(),'Ok')]")).click();
+            find(use_this_photo_button).click();
+            waitABit(2000);
+        }
     }
 
     public void rotatePhoto(int turn_count){
@@ -142,7 +145,7 @@ public class InspectorPlanSchedulePage extends PageObject {
         js.executeScript("arguments[0].click();", element);*/
         waitABit(500);
         find(passed_button).click();
-        waitABit(4000);
+        waitABit(15000);
 
     }
 
