@@ -14,7 +14,7 @@ public class DirectoryPage extends PageObject {
     AdminLoginPage page;
     WebDriver driver;
 
-    private By menu_directories = xpath("//body//a[9]");
+    private By menu_directories = xpath("//span[contains(text(),'Справочники')]");
     private By select_directories_type = xpath("//div[@class='v-select__selections']");
     private By code_input = xpath("//label[contains(text(),'Код')]/..//input");
     private By name_input = xpath("//label[contains(text(),'Название')]/..//input");

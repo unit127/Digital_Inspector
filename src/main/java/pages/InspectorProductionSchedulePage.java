@@ -22,23 +22,38 @@ import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 import static java.lang.String.format;
 
-@DefaultUrl("https://i-test.gpnsmonitor.ru/")
+@DefaultUrl("https://i-stage.gpnsmonitor.ru/")
 public class InspectorProductionSchedulePage extends PageObject {
     private By menu_button = xpath("//i[contains(text(),'menu')]");
     private By operations = xpath("//div[@class='gpns-card rounded with-shadow background--white gpns-card--in-card clickable']");
     private By create_new_package = xpath("//a[@class='typo-link clickable']");
     private By search_input = xpath("//input[@placeholder='Укажите номер пакета']");
     private By save_button = xpath("//button[contains(text(),'Сохранить')]");
+    private By characteristics = xpath("//div[@class='flex flex-auto']");
+    private By comment_textarea = xpath("//textarea[@placeholder='Написать комментарий']");
+    private By documents_criteria_button = xpath("//a[contains(text(),'Документы и критерии приемки')]");
+    private By understand_button = xpath("//button[contains(text(),'Понятно')]");
+    private By use_this_photo_button = xpath("//button[contains(text(),'Использовать это фото')]");
+    private By photo_input = xpath("//input[@type='file']");
+    private By edit_photo_button = xpath("//i[contains(text(),'edit')]");
+    private By rotate_right_button = xpath("//i[contains(text(),'rotate_right')]");
+    private By ready_link = xpath("//div[contains(text(),'Готово')]");
+    private By passed_button = xpath("//button[@id='set-validation-check-status-passed']");
+    private By has_defect_button = xpath("//button[@id='set-validation-check-status-has-defects']");
+    private By take_decision_later_button = xpath("//button[contains(text(),'Принять решение позже')]");
+    private By complete_control = xpath("//button[contains(text(),'Завершить контроль')]");
+
 
     String div_contains = "//div[contains(text(),'%s')]";
     String span_contains = "//span[contains(text(),'%s')]";
     String button_contains = "//button[contains(text(),'%s')]";
     String admin_menu = "//div//a['%s']";
 
-    String sertificate_path = "C:\\Users\\bests\\Desktop\\testphoto\\Working.xlsx";
+    String sertificate_path = "C:\\Users\\bests\\Desktop\\testphoto\\Worknig.xlsx";
     XSSFWorkbook sertificate = new XSSFWorkbook(new FileInputStream(sertificate_path));
 
     private List<WebElementFacade> listOperations = new ArrayList<WebElementFacade>();
+    private List<WebElementFacade> listCharacteristics = new ArrayList<WebElementFacade>();
 
     public InspectorProductionSchedulePage() throws IOException {
     }
@@ -70,8 +85,8 @@ public class InspectorProductionSchedulePage extends PageObject {
         return listOperations.size();
     }
 
-    public void chooseOperation(int oper_id){
-        findAll(operations).get(oper_id-1).click();
+    public void chooseOperation(String operation_name){
+        element(xpath(format(div_contains, operation_name))).click();
         waitABit(500);
     }
 
@@ -86,7 +101,7 @@ public class InspectorProductionSchedulePage extends PageObject {
     }
 
     public void chooseAction(String action_name){
-        find(xpath(format(span_contains,action_name))).click();
+        find(xpath(format(div_contains,action_name))).click();
         waitABit(3000);
     }
 
@@ -140,12 +155,9 @@ public class InspectorProductionSchedulePage extends PageObject {
         return (findAll(xpath(format(div_contains, cert_number))).size() == 1);
     }
 
-    public void chooseAdminMenu(String menu_number){
+    public void chooseAdminMenu(String menu_text){
         waitABit(500);
-        //find(xpath(format(admin_menu,menu_number))).click();
-        find(xpath("//i[contains(text(),'class')]")).click();
-        //System.out.println("test - " + find(xpath(format(admin_menu,menu_number))).getText());
-        //find(xpath("//a[@class='gpns-drawer__nav-link typo-subtitle1 align-center pt2 pr1 pb2 pl5 router-link-exact-active gpns-drawer__nav-link--active']"));
+        find(xpath(format(span_contains,menu_text))).click();
         waitABit(500);
     }
 
@@ -155,5 +167,89 @@ public class InspectorProductionSchedulePage extends PageObject {
         waitABit(5000);
     }
 
+    public int getGroupOperationsSize() {
+        listOperations = findAll(operations);
+        return listOperations.size();
+    }
+
+    public void chooseOperationFromGroup(int operation_id){
+        findAll(operations).get(operation_id).click();
+        // waitABit(500);
+    }
+
+    public int getCharacteristicsSize(){
+        listCharacteristics=findAll(characteristics);
+        return listCharacteristics.size();
+    }
+
+    public void chooseCharacteristic(int characteristic_id){
+        findAll(characteristics).get(characteristic_id).click();
+        //waitABit(500);
+    }
+
+    public void typeComment(String comment){
+        find(comment_textarea).sendKeys(Keys.chord(Keys.CONTROL,"a"));
+        find(comment_textarea).sendKeys(comment);
+    }
+
+    public void documentsCriteriaButtonClick(){
+        find(documents_criteria_button).waitUntilClickable().click();
+    }
+
+    public void understandButtonClick(){
+        find(understand_button).waitUntilClickable().click();
+    }
+
+    public void addPhoto(int id){
+        for(int i =1; i< 4; i++) {
+            String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\bigphoto" + i + ".jpg";
+            System.out.println(photoPath);
+            find(photo_input).waitUntilEnabled();
+            waitABit(500);
+            find(photo_input).sendKeys(photoPath);
+            waitABit(1000);
+            //find(By.xpath("//span[contains(text(),'Ok')]")).click();
+            find(use_this_photo_button).click();
+            waitABit(2000);
+        }
+    }
+
+    public void rotatePhoto(int turn_count){
+        waitABit(500);
+        find(edit_photo_button).click();
+        waitABit(300);
+        int i = 0;
+        while ( i != turn_count){
+            find(rotate_right_button).click();
+            i++;
+        }
+        find(ready_link).click();
+        waitABit(5000);
+    }
+
+    public void passedButtonClick(){
+        waitABit(500);
+        find(passed_button).click();
+        waitABit(7000);
+        //waitFor(element(complete_control));
+    }
+
+    public void hasDefectButtonClick(){
+        find(has_defect_button).waitUntilClickable().click();
+    }
+
+    public void takeDecisionLaterButton(){
+        find(take_decision_later_button).waitUntilClickable().click();
+    }
+
+    public void completeControlButtonClick(){
+        find(complete_control).waitUntilClickable().click();
+    }
+
+    public void buttonTextClick(String button_text){element(xpath(format(button_contains,button_text))).waitUntilClickable().click();}
+
+    public int check_tpk_window(){
+        return findAll(xpath("//div[contains(text(),'Внимание')]")).size();
+    }
 
 }

@@ -25,7 +25,7 @@ public class WhenPpiSample {
         steps.login("testUserAdmin","testUserAdmin1");
         steps.choose_menu_ppi();
         steps.create_button_click();
-        steps.type_sample_name("Autotest ppi name12");
+        steps.type_sample_name("Autotest ppi name 1305");
         steps.create_button_click();
         steps.choose_provider("Корвет");
         steps.choose_product("Труба дымовая");
@@ -48,8 +48,11 @@ public class WhenPpiSample {
         steps.open_page();
         steps.login("testUserAdmin", "testUserAdmin1");
         steps.choose_menu_ppi();
-        //steps.click_right_arrow_button();
-        steps.choose_created_ppi_sample("Autotest ppi name5");
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.choose_created_ppi_sample("Autotest ppi name 1305");
         steps.should_see_provider_product();
         steps.choose_created_operation_group("1");
         steps.choose_created_operation("1");
@@ -61,5 +64,11 @@ public class WhenPpiSample {
         steps.should_see_correct_parameters_frequency_method("S (при выполнении операции используются услуги субподрядчика) / B (выборочно)");
         steps.should_see_correct_parameters_frequency_method("V (проведение проверки или проверка выполнения технологического процесса) / C (100% проверка каждой единицы)");
         steps.should_see_correct_link_document_text("link document");
+        steps.back_to_list_button();
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.click_right_arrow_button();
+        steps.delete_sample("Autotest ppi name 1305");
     }
 }

@@ -19,7 +19,7 @@ public class InspectorProductionScheduleSteps {
     @Step
     public void choose_workshop(String workshop_name){page.chooseWorkshop(workshop_name);}
     @Step
-    public void choose_operation(int oper_id){page.chooseOperation(oper_id);}
+    public void choose_operation(String operation_name){page.chooseOperation(operation_name);}
     @Step
     public void choose_order(String order_name){page.chooseOrder(order_name);}
     @Step
@@ -46,7 +46,35 @@ public class InspectorProductionScheduleSteps {
     public void edit_certificate(String cert_number, String package_number) throws IOException {page.editСertificate(cert_number, package_number);}
 
     @Step
-    public void choose_admin_menu(String menu_number){page.chooseAdminMenu(menu_number);}
+    public void choose_admin_menu(String menu_name){page.chooseAdminMenu(menu_name);}
     @Step
     public void input_certificate(){page.inputCertificate();}
+    @Step
+    public void choose_operation_from_group(int operation_id){page.chooseOperationFromGroup(operation_id);}
+    @Step
+    public void choose_characteristic(int characteristic_id){page.chooseCharacteristic(characteristic_id);}
+    @Step
+    public void type_comment(String comment){page.typeComment(comment);}
+    @Step
+    public void document_criteria_button_click(){page.documentsCriteriaButtonClick();}
+    @Step
+    public void understand_button_click(){page.understandButtonClick();}
+    @Step
+    public void add_photo(int photo_id){page.addPhoto(photo_id);}
+    @Step
+    public void rotate_photo(int turn_count){page.rotatePhoto(turn_count);}
+    @Step
+    public void passed_button_click(){page.passedButtonClick();}
+    @Step
+    public void has_defect_button_click(){page.hasDefectButtonClick();}
+    @Step
+    public void take_decision_later_button_click(){page.takeDecisionLaterButton();}
+    @Step
+    public void complete_control_button_click(){page.completeControlButtonClick();}
+    @Step
+    public void button_text_click(String button_text){page.buttonTextClick(button_text);}
+
+    public int check_tpk_window(){return page.check_tpk_window();}
+    public int get_operations_size(){return page.getGroupOperationsSize();}
+    public int get_characteristics_size(){return page.getCharacteristicsSize();}
 }

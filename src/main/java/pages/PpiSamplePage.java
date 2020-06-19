@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.xpath;
 public class PpiSamplePage extends PageObject {
     AdminLoginPage page;
 
-    private By menu_ppi_sample = xpath("//body//a[4]");
+    private By menu_ppi_sample = xpath("//span[contains(text(),'Шаблоны ППИ')]");
     private By create_button = xpath("//div[contains(text(),'Создать')]");
     private By ppi_name_input = xpath("//input[@type='text']");
     private By provider_name_input = xpath("//input[@label='Введите поставщика']");
@@ -29,13 +29,16 @@ public class PpiSamplePage extends PageObject {
     private By inspector_action_input = xpath("//input[@label='Действия инспектора при несоответствии']");
     private By link_document_text = xpath("//textarea[@name='ref-docs']");
 
+    private By back_to_list_button = xpath("//button[contains(text(),'arrow_back_ios')]");
+
     private String provider_name = "//span[contains(text(),'%s')]";
     private String product_name = "//span[contains(text(),'%s')]";
     private String created_operation_group = "//div[@class='operations-list expansion-panel v-item-group theme--light v-expansion-panels v-expansion-panels--focusable']//div[%s]//button[1]";
     private String created_operation = "//div[@class='v-expansion-panel sub-operation'][%s]";
-    private String choose_characteristic = "//span[contains(text(),'%s')]";
+    private String choose_characteristic = "//div[contains(text(),'%s')]";
     private String ppi_sample_name = "//td[contains(text(),'%s')]";
     private String div_text_contains = "//div[contains(text(),'%s')]";
+    private String delete_button = "//td[contains(text(),'%s')]/..//button[@title=\"Удалить\"]";
 
     public void login(String email, String pass){page.authorization(email, pass);}
 
@@ -129,6 +132,15 @@ public class PpiSamplePage extends PageObject {
         find(link_document_text).sendKeys(text);
         moveTo(By.xpath("//button[contains(text(),'Сохранить документ')]"));
         find(By.xpath("//button[contains(text(),'Сохранить документ')]")).click();
+    }
+
+    public void backToListButtonClick(){
+        find(back_to_list_button).waitUntilClickable().click();
+    }
+
+    public void deletePpiSample(String sample_name){
+        moveTo(xpath(format(delete_button,sample_name))).waitUntilClickable().click();
+        //find(xpath(format(delete_button,sample_name))).waitUntilClickable().click();
     }
 
     public void chooseCreatedPpiSample(String name){

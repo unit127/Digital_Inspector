@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.xpath;
 public class ProductionSchedulePage extends PageObject {
     AdminLoginPage page;
 
-    private By menu_production_schedule = xpath("//body//a[1]");
+    private By menu_production_schedule = xpath("//span[contains(text(),'Производственный график')]");
     private By create_button = xpath("//div[contains(text(),'Создать')]");
     private By product_name_input = xpath("//input[@label='Название товара']");
     private By planned_size_input = xpath("//label[contains(text(),'Плановый объем (т)')]/..//input");

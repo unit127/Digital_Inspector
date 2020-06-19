@@ -42,6 +42,10 @@ public class PpiSampleSteps {
     @Step
     public void choose_created_ppi_sample(String ppi_sample_name){page.chooseCreatedPpiSample(ppi_sample_name);}
     @Step
+    public void back_to_list_button(){page.backToListButtonClick();}
+    @Step
+    public void delete_sample(String sample_name){page.deletePpiSample(sample_name);}
+    @Step
     public void should_see_provider_product(){
         Assertions.assertThat(page.correctProviderProductExistVisible()).isTrue();}
     @Step
@@ -50,5 +54,5 @@ public class PpiSampleSteps {
     @Step
     public void click_right_arrow_button(){page.rightArrowButtonClick();}
     @Step
-    public void should_see_correct_link_document_text(String text){page.correctLinkDocumentText(text);}
+    public void should_see_correct_link_document_text(String text){Assertions.assertThat(page.correctLinkDocumentText(text));}
 }

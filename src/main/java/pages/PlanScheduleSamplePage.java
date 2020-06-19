@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.xpath;
 public class PlanScheduleSamplePage extends PageObject {
     AdminLoginPage page;
 
-    private By menu_plan_schedule_sample = xpath("//body//a[5]");
+    private By menu_plan_schedule_sample = xpath("//span[contains(text(),'Шаблон плана-графика')]");
     private By create_button = xpath("//div[contains(text(),'Создать')]");
     private By plan_schedule_name_input = xpath("//input[@type='text']");
     private By provider_name_input = xpath("//input[@label='Выберите поставщика']");
