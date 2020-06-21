@@ -166,5 +166,4 @@ public class PpiSamplePage extends PageObject {
         return find(link_document_text).getValue().equals(text);
     }
 
-
 }

@@ -35,7 +35,7 @@ public class WhenInspectorProductionSchedule {
     }
 
     @Test
-    //@Pending
+    @Pending
     public void PpiCheck(){
         steps.open_page();
         steps.login("testUserInspector", "testUserInspector1");
