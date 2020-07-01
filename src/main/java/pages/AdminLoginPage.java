@@ -9,9 +9,9 @@ import static org.openqa.selenium.By.xpath;
 
 @DefaultUrl("https://a2-stage.gpnsmonitor.ru/login")
 public class AdminLoginPage extends PageObject {
-    private By emailInput = xpath("//input[@type='email']");
-    private By passwordInput = xpath("//input[@type='password']");
-    private By enterButton = xpath("//button");
+    private By emailInput = xpath("//input[@id='login']");
+    private By passwordInput = xpath("//input[@id='password']");
+    private By enterButton = xpath("//button[@type='submit']");
     private By errorMessage = xpath("//div[@class='color--warning gpns-caption']");
 
     public void typeEmail(String email){
