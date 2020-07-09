@@ -46,7 +46,10 @@ public class InspectorPlanScheduleSteps {
     public void slider_move(int move){page.sliderMove(move);}
     @Step
     public void back_button_click(){page.backButtonClick();}
+    @Step
+    public void button_text_click(String button_text){page.buttonTextClick(button_text);}
 
+    public int check_tpk_window(){return page.checkTpkWindow();}
 
     public int get_stages_size(){return page.getStagesSize();}
     public int get_operations_size(){return page.getOperationsSize();}

@@ -1,5 +1,6 @@
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ public class WhenConsignment {
     WebDriver driver;
 
     @Test
+    @Pending
     public void addConsignment(){
         steps.open_page();
         steps.login("testUserAdmin", "testUserAdmin1");

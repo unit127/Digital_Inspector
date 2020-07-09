@@ -29,13 +29,14 @@ public class PlanScheduleSamplePage extends PageObject {
     private By delete_stage_button = xpath("//span[contains(text(),'Удалить этап')]");
     private By clean_plan_schedule_button = xpath("//div[contains(text(),'Очистить план-график')]");
     private By delete_ppi_operation = xpath("//div[@class='add-operation__summary-remove']");
+    private By search_input = xpath("//input[@placeholder='Поиск шаблона или поставщика']");
 
     private String provider_name = "//span[contains(text(),'%s')]";
     private String choose_material_name = "//span[contains(text(),'%s')]";
-    private String ppi_sample_name = "//div[contains(text(),'%s')]";
+    private String ppi_sample_name = "//span[contains(text(),'%s')]";
     private String new_stage_name = "//span[contains(text(),'%s')]";
     private String group_operation = "//span[contains(text(),'%s')]";
-    private String choose_plan_schedule_sample = "//div[contains(text(),'%s')]";
+    private String choose_plan_schedule_sample = "//span[contains(text(),'%s')]";
     private String stage_exist = "//div[@class='gantt-chart__task-list']//div[contains(text(),'%s')]";
     private String ppi_operation_exist = "//div[contains(text(),'%s')]";
     private String delete_plan_schedule = ".//div[contains(text(),'%s')]/..//button[2]";
@@ -65,8 +66,9 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void choosePpiSample(String sample_name){
-        find(ppi_sample_name_input).click();//sendKeys(sample_name);
-        element(xpath(format(ppi_sample_name,sample_name))).click();
+        find(ppi_sample_name_input).sendKeys(sample_name);
+        waitABit(500);
+        element(xpath(format(ppi_sample_name,sample_name))).waitUntilClickable().click();
     }
 
     public void addStageButtonClick(){
@@ -80,11 +82,11 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void typeDuration(String days){
-        findAll(By.xpath("//div[@class='v-text-field__slot']//input")).get(2).sendKeys(days);
+        find(By.xpath("//label[contains(text(),'Дней')]/..//input")).sendKeys(days);
     }
 
     public void choosePreviousStage(int prev_stage_position){
-        findAll(previous_stage_list).get(prev_stage_position).click();
+        findAll(previous_stage_list).get(prev_stage_position).waitUntilClickable().click();
     }
 
     public void saveButtonClick(){
@@ -96,9 +98,9 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void addPpiToStage(String group_operation_name, int stage_position){
-        findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(stage_position-1).click();
+        findAll(By.xpath("//div[@class='gantt-chart__task-list']//div[contains(text(),'ППИ')]")).get(stage_position-1).waitUntilClickable().click();
         find(group_operation_input).sendKeys(group_operation_name);
-        element(xpath(format(group_operation,group_operation_name))).click();
+        element(xpath(format(group_operation,group_operation_name))).waitUntilClickable().click();
         //findAll(By.xpath("//div[@class='add-operation__list-item flex clickable p2']")).get(0).click();
         find(choose_all_operations).click();
         find(add_ppi_operations_button).click();
@@ -116,8 +118,10 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public void choosePlanScheduleSample(String plan_sample_name){
-        element(xpath(format(choose_plan_schedule_sample,plan_sample_name))).click();
+        find(search_input).sendKeys(plan_sample_name);
         waitABit(500);
+        element(xpath(format(choose_plan_schedule_sample,plan_sample_name))).waitUntilClickable().click();
+        waitABit(5000);
     }
 
     public void deletePlanScheduleSample(String pg_sample_name){

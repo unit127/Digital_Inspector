@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.format;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
@@ -44,17 +45,22 @@ public class InspectorPlanSchedulePage extends PageObject {
     private By progress_slider = xpath("//div[@class='vue-slider-dot']"); //("//div[@class='vue-slider-rail']");
     private By back_button = xpath("//i[contains(text(),'arrow_back')]");
 
+    String button_contains = "//button[contains(text(),'%s')]";
 
     private List<WebElementFacade> listStages = new ArrayList<WebElementFacade>();
     private List<WebElementFacade> listOperations = new ArrayList<WebElementFacade>();
     private List<WebElementFacade> listCharacteristics = new ArrayList<WebElementFacade>();
 
-    public void login(String email, String pass){page.authorization(email, pass);}
+    public void login(String email, String pass){
+        find(xpath("//input[@type='email']")).sendKeys(email);
+        find(xpath("//input[@type='password']")).sendKeys(pass);
+        find(xpath("//button[contains(text(),'Войти')]")).waitUntilClickable().click();
+    }
 
     public void fillSearchPlanSchedule(String search_request){
         waitABit(1500);
         find(search_input).sendKeys(search_request);
-        waitABit(1500);
+        waitABit(10000);
     }
 
     public void openFoundedPlanSchedule(){
@@ -68,7 +74,7 @@ public class InspectorPlanSchedulePage extends PageObject {
 
     public void chooseStage(int stage_id){
         findAll(stages).get(stage_id).click();
-        //waitABit(500);
+        waitABit(15000);
     }
 
     public int getOperationsSize() {
@@ -105,7 +111,7 @@ public class InspectorPlanSchedulePage extends PageObject {
     }
 
     public void addPhoto(int id){
-        for(int i =1; i< 6; i++) {
+        for(int i =1; i< 4; i++) {
             String photoPath = "C:\\Users\\bests\\Desktop\\testphoto\\bigphoto" + i + ".jpg";
             System.out.println(photoPath);
             find(photo_input).waitUntilEnabled();
@@ -145,7 +151,7 @@ public class InspectorPlanSchedulePage extends PageObject {
         js.executeScript("arguments[0].click();", element);*/
         waitABit(500);
         find(passed_button).click();
-        waitABit(15000);
+        waitABit(25000);
 
     }
 
@@ -192,5 +198,11 @@ public class InspectorPlanSchedulePage extends PageObject {
     public void backButtonClick(){
         find(back_button).waitUntilClickable().click();
     }
+
+    public int checkTpkWindow(){
+        return findAll(xpath("//div[contains(text(),'Внимание')]")).size();
+    }
+    public void buttonTextClick(String button_text){element(xpath(format(button_contains,button_text))).waitUntilClickable().click();}
+
 
 }

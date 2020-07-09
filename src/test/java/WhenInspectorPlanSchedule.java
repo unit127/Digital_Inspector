@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import steps.InspectorPlanScheduleSteps;
 
 @RunWith(SerenityRunner.class)
@@ -17,10 +18,18 @@ public class WhenInspectorPlanSchedule {
 
     @Test
     @Pending
+    public void testLoad(){
+        steps.open_page();
+        steps.login("testUserInspector","testUserInspector1");
+        steps.open_page();
+
+    }
+    @Test
+    //@Pending
     public void InspectorCheck(){
         steps.open_page();
         steps.login("testUserInspector","testUserInspector1");
-        steps.fill_search_field("300420");
+        steps.fill_search_field("301301");
         steps.open_founded_plan_schedule();
        // for (int l = 0; l <30; l++) {
             int stagesCount = steps.get_stages_size();
@@ -51,6 +60,11 @@ public class WhenInspectorPlanSchedule {
                         //steps.rotate_photo(k);
                         //steps.add_photo(k + 1);
                         steps.passed_button_click();
+                        if (steps.check_tpk_window() ==1){
+                            System.out.println("1");
+                            steps.button_text_click("Нет");
+                            System.out.println("2");
+                        }
                         //steps.success_button_click();
                         //steps.inconsistencies_button_click();
                     }
