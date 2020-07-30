@@ -25,7 +25,7 @@ public class WhenInspectorPlanSchedule {
 
     }
     @Test
-    //@Pending
+    @Pending
     public void InspectorCheck(){
         steps.open_page();
         steps.login("testUserInspector","testUserInspector1");

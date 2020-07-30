@@ -28,7 +28,7 @@ public class PlanScheduleSamplePage extends PageObject {
     private By close_button = xpath("//div[contains(text(),'Закрыть')]");
     private By delete_stage_button = xpath("//span[contains(text(),'Удалить этап')]");
     private By clean_plan_schedule_button = xpath("//div[contains(text(),'Очистить план-график')]");
-    private By delete_ppi_operation = xpath("//div[@class='add-operation__summary-remove']");
+    private By delete_ppi_operation = xpath("//div[@class='flex border-bottom border--base-light']//button");
     private By search_input = xpath("//input[@placeholder='Поиск шаблона или поставщика']");
 
     private String provider_name = "//span[contains(text(),'%s')]";
@@ -163,7 +163,7 @@ public class PlanScheduleSamplePage extends PageObject {
     }
 
     public boolean checkPpiOperationDeleted(){
-        findAll(By.xpath("//div[@class='flex spaced-x']//a[contains(text(),'ППИ')]")).get(0).click();
+        findAll(By.xpath("//div[@class='flex flex-column']//span[contains(text(),'ППИ')]")).get(0).click();
         String ppi_operation_delete = findAll("//div[@class='add-operation__summary-item']//div[1]").get(0).getText();
         findAll(delete_ppi_operation).get(0).waitUntilClickable().click();
         find(close_button).click();
