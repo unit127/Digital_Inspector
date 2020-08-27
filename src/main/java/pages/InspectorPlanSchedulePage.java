@@ -52,9 +52,9 @@ public class InspectorPlanSchedulePage extends PageObject {
     private List<WebElementFacade> listCharacteristics = new ArrayList<WebElementFacade>();
 
     public void login(String email, String pass){
-        find(xpath("//input[@type='email']")).sendKeys(email);
-        find(xpath("//input[@type='password']")).sendKeys(pass);
-        find(xpath("//button[contains(text(),'Войти')]")).waitUntilClickable().click();
+        find(xpath("//input[@id='login']")).sendKeys(email);
+        find(xpath("//input[@id='password']")).sendKeys(pass);
+        find(xpath("//button[@type='submit']")).waitUntilClickable().click();
     }
 
     public void fillSearchPlanSchedule(String search_request){
@@ -204,5 +204,6 @@ public class InspectorPlanSchedulePage extends PageObject {
     }
     public void buttonTextClick(String button_text){element(xpath(format(button_contains,button_text))).waitUntilClickable().click();}
 
+    public boolean checkPlanScheduleQuantity(){return findAll(founded_plan_schedule).size() == 1;}
 
 }

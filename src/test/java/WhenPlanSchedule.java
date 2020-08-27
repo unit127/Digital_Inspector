@@ -1,5 +1,6 @@
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class WhenPlanSchedule {
     WebDriver driver;
 
     @Test
+    @Pending
     public void createPlanSchedule(){
         steps.open_page();
         steps.login("testUserAdmin","testUserAdmin1");

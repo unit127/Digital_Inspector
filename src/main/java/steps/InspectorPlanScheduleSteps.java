@@ -48,9 +48,10 @@ public class InspectorPlanScheduleSteps {
     public void back_button_click(){page.backButtonClick();}
     @Step
     public void button_text_click(String button_text){page.buttonTextClick(button_text);}
+    @Step
+    public void should_see_one_plan_schedule_after_return(){page.checkPlanScheduleQuantity();}
 
     public int check_tpk_window(){return page.checkTpkWindow();}
-
     public int get_stages_size(){return page.getStagesSize();}
     public int get_operations_size(){return page.getOperationsSize();}
     public int get_characteristics_size(){return page.getCharacteristicsSize();}

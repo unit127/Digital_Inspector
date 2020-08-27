@@ -23,7 +23,8 @@ public class ConsignmentPage extends PageObject {
     private final By sf_input = xpath("//label[contains(text(),'Внешний номер счета фактуры')]/..//input");
     private final By cargo_position_input = xpath("//label[contains(text(),'Номер позиции груза по с/ф')]/..//input");
     private final By trn_input = xpath("//label[contains(text(),'Номер транспортной накладной')]/..//input");
-    private final By quantity_cargo = xpath("//label[contains(text(),'Кол-во (шт)')]/..//input");
+    private final By quantity_cargo_input = xpath("//label[contains(text(),'Кол-во шт')]/..//input");
+    private final By weight_cargo_input = xpath("//label[contains(text(),'Вес (кг)')]/..//input");
     private final By add_trn_button = xpath("//button//div[contains(text(),'Добавить ТРН')]");
     private final By add_places_by_cargo_button = xpath("//button//div[contains(text(),'Добавить места по грузу')]");
     private final By ts_number_input = xpath("//label[contains(text(),'Номер ТС/Трекера')]/..//input");
@@ -82,12 +83,13 @@ public class ConsignmentPage extends PageObject {
 
     public void chooseProduct(String product_name, int cargo_number){
         findAll(product_input).get(cargo_number).click();
-        element(xpath(format(div_contains,product_name))).waitUntilClickable().click();
+        waitABit(500);
+        findAll(xpath(format(div_contains,product_name))).get(cargo_number).waitUntilClickable().click();
     }
 
     public void typeQuantityWeight(String quantity, String weight, int cargo_number){
         findAll(xpath("//label[contains(text(),'Кол-во')]/..//input")).get(cargo_number).sendKeys(quantity);
-        findAll(xpath("//label[contains(text(),'Вес (кг)')]/..//input")).get(cargo_number).sendKeys(weight);
+       // findAll(xpath("//label[contains(text(),'Вес (кг)')]/..//input")).get(cargo_number).sendKeys(weight);
     }
 
     public void addCargoButtonClick(){
@@ -112,8 +114,8 @@ public class ConsignmentPage extends PageObject {
     }
 
     public void quantityCargoType(String quantity, int field_number){
-        findAll(quantity_cargo).get(0).sendKeys(quantity);
-        findAll(quantity_cargo).get(1).sendKeys(quantity);
+        findAll(quantity_cargo_input).get(0).sendKeys(quantity);
+        findAll(quantity_cargo_input).get(1).sendKeys(quantity);
     }
 
     public void addTrnButtonClick(){
@@ -134,4 +136,7 @@ public class ConsignmentPage extends PageObject {
         find(done_button).waitUntilClickable().click();
     }
 
+    public boolean checkCalculatedWeight(int cargo_number){return findAll(weight_cargo_input).get(cargo_number).getValue().equals('0');}
+
+    public boolean checkQuantityProducts(){return findAll(xpath("//div[@class='flex justify-start mb-3']")).size()>0;}
 }

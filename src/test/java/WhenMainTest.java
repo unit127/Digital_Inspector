@@ -28,10 +28,10 @@ public class WhenMainTest {
         ppiSteps.create_button_click();
         ppiSteps.choose_provider("Корвет");
         ppiSteps.choose_product("Труба дымовая");
-        ppiSteps.choose_group_operation();
-        ppiSteps.choose_operation();
+        ppiSteps.choose_group_operation("[B7] Производство");
+        ppiSteps.choose_operation("Контроль испытательного оборудования");
         ppiSteps.add_operation_button_click();
-        ppiSteps.choose_created_operation_group("1");
+        ppiSteps.choose_created_operation_group("",0);
         ppiSteps.choose_created_operation("1");
         ppiSteps.choose_characteristics(
                 "Наличие, ведение","Срок действия не истек",

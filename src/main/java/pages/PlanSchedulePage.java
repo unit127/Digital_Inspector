@@ -12,17 +12,23 @@ public class PlanSchedulePage extends PageObject {
     AdminLoginPage page;
 
     private final By menu_plan_schedule_sample = xpath("//span[contains(text(),'План-график')]");
-    private final By provider_input = xpath("//input[@label='Поставщик']");
-    private final By contract_input = xpath("//input[@label='Договор']");
-    private final By annex_input = xpath("//input[@label='Приложение']");
-    private final By good_input = xpath("//input[@label='Товар']");
-    private final By product_input = xpath("//input[@label='Изделие']");
+    private final By provider_field = xpath("//div[contains(text(),'Поставщик')]/..//div[@class='kit-select__value']");
+    private final By provider_input = xpath("//div[contains(text(),'Поставщик')]/..//input[@placeholder='Поиск']");
+    private final By contract_field = xpath("//div[contains(text(),'Договор')]/..//div[@class='kit-select__value']");
+    private final By contract_input = xpath("//div[contains(text(),'Договор')]/..//input[@placeholder='Поиск']");
+    private final By annex_field = xpath("//div[contains(text(),'Приложение')]/..//div[@class='kit-select__value']");
+    private final By annex_input = xpath("//div[contains(text(),'Приложение')]/..//input[@placeholder='Поиск']");
+    private final By good_field = xpath("//div[contains(text(),'Товар')]/..//div[@class='kit-select__value']");
+    private final By good_input = xpath("//div[contains(text(),'Товар')]/..//input[@placeholder='Поиск']");
+    private final By product_field = xpath("//div[contains(text(),'Изделие')]/..//div[@class='kit-select__value']");
+    private final By product_input = xpath("//div[contains(text(),'Изделие')]/..//input[@placeholder='Поиск']");
     private final By plan_date_input = xpath("//label[contains(text(),'По плану')]/..//input");
     private final By ppi_sample_input = xpath("//input[@label='Шаблон ППИ']");
     private final By add_stage_button = xpath("//button//div[contains(text(),'Добавить этап')]");
     private final By copy_from_sample_button = xpath("//button//div[contains(text(),'Копировать из шаблона')]");
     private final By clean_plan_schedule_button = xpath("//button//div[contains(text(),'Очистить план-график')]");
-    private final By plan_schedule_sample_input = xpath("//input[@label='Имя']");
+    private final By plan_schedule_sample_field = xpath("//div[contains(text(),'Имя')]/..//div[@class='kit-select__value']");
+    private final By plan_schedule_sample_input = xpath("//div[contains(text(),'Имя')]/..//input[@placeholder='Поиск']");
     private final By copy_button = xpath("//div[contains(text(),'Копировать из шаблона')]/..//button//div[contains(text(),'Копировать')]");
     private final By delete_stage_button = xpath("//button//span[contains(text(),'Удалить')]");
     private final By delete_ppi_operation_button = xpath("//div[@class='flex border-bottom border--base-light']//button");
@@ -44,34 +50,44 @@ public class PlanSchedulePage extends PageObject {
 
     public void chooseProvider(String provider_name){
         waitABit(3000);
-        find(provider_input).sendKeys(provider_name);
+        find(provider_field).waitUntilClickable().click();
         waitABit(500);
-        element(xpath(format(search_list,provider_name))).waitUntilClickable().click();
+        find(provider_input).sendKeys(provider_name);
+        waitABit(1000);
+        element(xpath(format(div_contains,provider_name))).waitUntilClickable().click();
         waitABit(1000);
         System.out.println("choose provider");
     }
 
     public void chooseContract(String contract_number){
-        waitABit(5000);
+        waitABit(3000);
+        find(contract_field).waitUntilClickable().click();
+        waitABit(500);
         find(contract_input).sendKeys(contract_number);
-        element(xpath(format(search_list,contract_number))).waitUntilClickable().click();
+        waitABit(1000);
+        element(xpath(format(div_contains,contract_number))).waitUntilClickable().click();
     }
 
     public void chooseAnnex(String annex_number){
         waitABit(1000);
-        find(annex_input).sendKeys(annex_number);
-        element(xpath(format(search_list,annex_number))).waitUntilClickable().click();
+        find(annex_field).waitUntilClickable().click();
+        find(annex_input).waitUntilVisible().sendKeys(annex_number);
+        element(xpath(format(div_contains,annex_number))).waitUntilClickable().click();
     }
 
     public void chooseGood(String good_name){
         waitABit(1000);
-        find(good_input).sendKeys(good_name);
+        find(good_field).waitUntilClickable().click();
+        find(good_input).waitUntilVisible().sendKeys(good_name);
+        waitABit(1000);
         element(xpath(format(div_contains,good_name))).waitUntilClickable().click();
     }
 
     public void chooseProduct(String product_number){
         waitABit(1000);
-        find(product_input).click();
+        find(product_field).waitUntilClickable().click();
+       // find(product_input).waitUntilVisible().click();
+        waitABit(1000);
         element(xpath(format(div_contains,product_number))).waitUntilClickable().click();
     }
 

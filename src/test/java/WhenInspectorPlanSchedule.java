@@ -29,7 +29,7 @@ public class WhenInspectorPlanSchedule {
     public void InspectorCheck(){
         steps.open_page();
         steps.login("testUserInspector","testUserInspector1");
-        steps.fill_search_field("301301");
+        steps.fill_search_field("32344");
         steps.open_founded_plan_schedule();
        // for (int l = 0; l <30; l++) {
             int stagesCount = steps.get_stages_size();
@@ -55,7 +55,7 @@ public class WhenInspectorPlanSchedule {
                         steps.choose_characteristic(k);
                         steps.document_criteria_button_click();
                         steps.understand_button_click();
-                        steps.type_comment("good comment photo stage 30.04");
+                        steps.type_comment("good comment photo stage 30.07");
                         steps.add_photo(k);
                         //steps.rotate_photo(k);
                         //steps.add_photo(k + 1);
@@ -73,6 +73,7 @@ public class WhenInspectorPlanSchedule {
                         steps.slider_move(100);
                         steps.type_general_comment("General comment stage 30 04");
                         steps.back_button_click();
+                        steps.should_see_one_plan_schedule_after_return();
                     }
                 }
             }

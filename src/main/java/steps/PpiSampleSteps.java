@@ -22,13 +22,13 @@ public class PpiSampleSteps {
     @Step
     public void choose_product(String prod_name){page.chooseProduct(prod_name);}
     @Step
-    public void choose_group_operation(){page.chooseGroupOperation();}
+    public void choose_group_operation(String group_operation_name){page.chooseGroupOperation(group_operation_name);}
     @Step
-    public void choose_operation(){page.chooseOperation();}
+    public void choose_operation(String operation_name){page.chooseOperation(operation_name);}
     @Step
     public void add_operation_button_click(){page.addOperationButtonClick();}
     @Step
-    public void choose_created_operation_group(String position){page.chooseCreatedOperationGroup(position);}
+    public void choose_created_operation_group(String group_operation_name,int position){page.chooseCreatedOperationGroup(group_operation_name,position);}
     @Step
     public void choose_created_operation(String position){page.chooseCreatedOperation(position);}
     @Step
@@ -46,6 +46,8 @@ public class PpiSampleSteps {
     @Step
     public void delete_sample(String sample_name){page.deletePpiSample(sample_name);}
     @Step
+    public void find_ppi_sample(String sample_name){page.findPpiSample(sample_name);}
+    @Step
     public void should_see_provider_product(){
         Assertions.assertThat(page.correctProviderProductExistVisible()).isTrue();}
     @Step
@@ -55,4 +57,8 @@ public class PpiSampleSteps {
     public void click_right_arrow_button(){page.rightArrowButtonClick();}
     @Step
     public void should_see_correct_link_document_text(String text){Assertions.assertThat(page.correctLinkDocumentText(text));}
+
+    public int get_created_operation_size(){return page.getCreatedOperationSize();}
+    public int get_created_group_operation_size(){return page.getCreatedGroupOperationSize();}
+
 }

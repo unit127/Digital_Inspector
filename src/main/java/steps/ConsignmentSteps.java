@@ -1,6 +1,7 @@
 package steps;
 
 import net.thucydides.core.annotations.Step;
+import org.assertj.core.api.Assertions;
 import pages.ConsignmentPage;
 
 public class ConsignmentSteps {
@@ -54,4 +55,10 @@ public class ConsignmentSteps {
     public void ts_number_type(String ts_number){page.tsNumberType(ts_number);}
     @Step
     public void done_button_click(){page.doneButtonClick();}
+    @Step
+    public void should_see_calculated_weight(int cargo_number){
+        Assertions.assertThat(page.checkCalculatedWeight(cargo_number)).isFalse();
+    }
+    @Step
+    public void should_see_product_quantity(){Assertions.assertThat(page.checkQuantityProducts()).isTrue();}
 }
