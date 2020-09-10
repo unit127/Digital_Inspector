@@ -9,5 +9,8 @@
         <module name="Digital_Inspector" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Digital_Inspector" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
