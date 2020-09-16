@@ -5,8 +5,8 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import steps.PlanScheduleSampleSteps;
-import steps.PpiSampleSteps;
+import steps.Admin.PlanScheduleSampleSteps;
+import steps.Admin.PpiSampleSteps;
 
 @RunWith(SerenityRunner.class)
 public class WhenMainTest {
