@@ -53,7 +53,7 @@ public class PpiSamplePage extends PageObject {
     private final String ppi_sample_name = "//td[contains(text(),'%s')]";
     private final String div_text_contains = "//div[contains(text(),'%s')]";
     private final String div_contains = "//div[contains(text(),'%s')]";
-    private final String delete_button = "//span[contains(text(),'Autotest ppi name 2408')]/../..//button[@title=\"Удалить\"]";
+    private final String delete_button = "//span[contains(text(),'%s')]/../..//button[@title=\"Удалить\"]";
     private final String kit_select = "//div[@class='kit-select-list']//div[contains(text(),'%s')]";
     private final String mark_contains = "//mark[contains(text(),'%s')]";
 
@@ -68,6 +68,7 @@ public class PpiSamplePage extends PageObject {
     }
 
     public void createButtonClick(){
+        System.out.println("create button click");
         find(create_button).waitUntilClickable().click();
     }
 
@@ -135,25 +136,25 @@ public class PpiSamplePage extends PageObject {
         waitABit(1000);
         findAll(checking_characteristics_input).get(findAll(checking_characteristics_input).size()-1).sendKeys(check_char);
         waitABit(1000);
-        findAll(xpath(format(div_contains,check_char))).get(findAll(xpath(format(div_contains,check_char))).size()-1).click();
+        findAll(xpath(format(mark_contains,check_char))).get(findAll(xpath(format(mark_contains,check_char))).size()-1).click();
         waitABit(1000);
         findAll(criteria_acceptance_field).get(findAll(criteria_acceptance_field).size()-1).waitUntilClickable().click();
         waitABit(1000);
         findAll(criteria_acceptance_input).get(findAll(criteria_acceptance_input).size()-1).sendKeys(criterion_acceptance);
         waitABit(1000);
-        findAll(xpath(format(div_contains,criterion_acceptance))).get(findAll(xpath(format(div_contains,criterion_acceptance))).size()-1).click();
+        findAll(xpath(format(mark_contains,criterion_acceptance))).get(findAll(xpath(format(mark_contains,criterion_acceptance))).size()-1).click();
         waitABit(1000);
         findAll(registration_method_field).get(findAll(registration_method_field).size()-1).waitUntilClickable().click();
         waitABit(1000);
         findAll(registration_method_input).get(findAll(registration_method_input).size()-1).sendKeys(reg_method);
         waitABit(1000);
-        findAll(xpath(format(div_contains,reg_method))).get(findAll(xpath(format(div_contains,reg_method))).size()-1).click();
+        findAll(xpath(format(mark_contains,reg_method))).get(findAll(xpath(format(mark_contains,reg_method))).size()-1).click();
         waitABit(1000);
         findAll(inspector_action_field).get(findAll(inspector_action_field).size()-1).waitUntilClickable().click();
         waitABit(1000);
         findAll(inspector_action_input).get(findAll(inspector_action_input).size()-1).sendKeys(inspector_action);
         waitABit(1000);
-        findAll(xpath(format(div_contains,inspector_action))).get(findAll(xpath(format(div_contains,inspector_action))).size()-1).click();
+        findAll(xpath(format(mark_contains,inspector_action))).get(findAll(xpath(format(mark_contains,inspector_action))).size()-1).click();
         waitABit(1000);
     }
 

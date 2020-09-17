@@ -19,13 +19,13 @@ public class WhenPpiSample {
     WebDriver driver;
 
     @Test
-    //@Pending
-    public void createPpiSample(){
+    @Pending
+    public void createPpiSample() {
         steps.open_page();
-        steps.login("testUserAdmin","testUserAdmin1");
+        steps.login("testUserAdmin", "testUserAdmin1");
         steps.choose_menu_ppi();
         steps.create_button_click();
-        steps.type_sample_name("Autotest ppi name 1009");
+        steps.type_sample_name("Autotest ppi name 1609");
         steps.create_button_click();
         //steps.choose_provider("Корвет");
         //steps.choose_product("Труба дымовая");
@@ -38,30 +38,31 @@ public class WhenPpiSample {
         steps.choose_group_operation("Испытания привода");
         steps.choose_operation("Показатели надежности");
         steps.add_operation_button_click();
-        steps.choose_created_operation_group("Испытания привода",0);
+        steps.choose_created_operation_group("Испытания привода", 0);
         steps.choose_created_operation("1.1.");
         steps.choose_characteristics(
-                "Наличие, ведение","Срок действия не истек",
-                "Фото журнала ОТК","Отразить степень критичности");
+                "Наличие, ведение", "Срок действия не истек",
+                "Фото журнала ОТК", "Отразить степень критичности");
         steps.choose_frequency_method();
         steps.type_link_document("link document 1.1.");
         steps.choose_created_operation("1.2.");
         steps.choose_characteristics(
-                "Наличие, ведение","Срок действия не истек",
-                "Фото журнала ОТК","Отразить степень критичности");
+                "Наличие, ведение", "Срок действия не истек",
+                "Фото журнала ОТК", "Отразить степень критичности");
         steps.choose_frequency_method();
         steps.type_link_document("link document 1.2.");
-        steps.choose_created_operation_group("Производство труб",1);
+        steps.choose_created_operation_group("Производство труб", 1);
         steps.choose_created_operation("2.1.");
         steps.choose_characteristics(
-                "Наличие, ведение","Срок действия не истек",
-                "Фото журнала ОТК","Отразить степень критичности");
+                "Наличие, ведение", "Срок действия не истек",
+                "Фото журнала ОТК", "Отразить степень критичности");
         steps.choose_frequency_method();
         steps.type_link_document("link document 2.1.");
         steps.choose_menu_ppi();
-        steps.find_ppi_sample("Autotest ppi name 1009");
-        steps.delete_sample("Autotest ppi name 1009");
-       }
+        steps.find_ppi_sample("Autotest ppi name 1609");
+        steps.delete_sample("Autotest ppi name 1609");
+
+    }
 
     @Test
     @Pending
@@ -75,7 +76,7 @@ public class WhenPpiSample {
         steps.click_right_arrow_button();
         steps.choose_created_ppi_sample("Autotest ppi name 1305");
         steps.should_see_provider_product();
-        steps.choose_created_operation_group("",0);
+        steps.choose_created_operation_group("", 0);
         steps.choose_created_operation("1.1.");
         steps.should_see_correct_parameters_frequency_method("Наличие, ведение");
         steps.should_see_correct_parameters_frequency_method("Срок действия не истек");
@@ -85,7 +86,7 @@ public class WhenPpiSample {
         steps.should_see_correct_parameters_frequency_method("S (при выполнении операции используются услуги субподрядчика) / B (выборочно)");
         steps.should_see_correct_parameters_frequency_method("V (проведение проверки или проверка выполнения технологического процесса) / C (100% проверка каждой единицы)");
         steps.should_see_correct_link_document_text("link document");
-        steps.choose_created_operation_group("",0);
+        steps.choose_created_operation_group("", 0);
         steps.choose_created_operation("1.2.");
         steps.should_see_correct_parameters_frequency_method("Наличие, ведение");
         steps.should_see_correct_parameters_frequency_method("Срок действия не истек");
@@ -95,7 +96,7 @@ public class WhenPpiSample {
         steps.should_see_correct_parameters_frequency_method("S (при выполнении операции используются услуги субподрядчика) / B (выборочно)");
         steps.should_see_correct_parameters_frequency_method("V (проведение проверки или проверка выполнения технологического процесса) / C (100% проверка каждой единицы)");
         steps.should_see_correct_link_document_text("link document");
-        steps.choose_created_operation_group("",1);
+        steps.choose_created_operation_group("", 1);
         steps.choose_created_operation("2.1.");
         steps.should_see_correct_parameters_frequency_method("Наличие, ведение");
         steps.should_see_correct_parameters_frequency_method("Срок действия не истек");

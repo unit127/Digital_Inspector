@@ -20,7 +20,7 @@ public class PlanScheduleSampleSteps {
     @Step
     public void choose_provider(String provider_name){page.chooseProvider(provider_name);}
     @Step
-    public void choose_material(String material_name){page.chooseMaterial(material_name);}
+    public void choose_material(String product_name){page.chooseProduct(product_name);}
     @Step
     public void choose_ppi_sample(String ppi_sample_name){page.choosePpiSample(ppi_sample_name);}
     @Step
@@ -47,6 +47,8 @@ public class PlanScheduleSampleSteps {
     public void delete_plan_schedule_sample(String pg_sample_name){
         page.deletePlanScheduleSample(pg_sample_name);
     }
+    @Step
+    public void close_button_click(){page.closeButtonClick();}
     @Step
     public void should_see_correct_provider_material(){
         Assertions.assertThat(page.correctProviderMaterialExistVisible()).isTrue();
